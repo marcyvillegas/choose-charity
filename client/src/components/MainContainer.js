@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import List from './List'
 
 let incrementingNum = 1;
 
-export default function MainContainer() {
+export default function MainContainer({addToDoList}) {
 
-    // to-do list state
+    // to-do info state
     const [toDoInfo, setToDoInfo] = useState({
         id: 0,
         task: '',
@@ -33,14 +32,17 @@ export default function MainContainer() {
 
         event.preventDefault()
 
+        // adds the toDoInfo
+        addToDoList(toDoInfo)
+
         ++incrementingNum
-        setToDoInfo({task: ""})
-        console.log(toDoInfo)
+
+        setToDoInfo({ task: "" })
     }
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '5rem' }}>
-            <div style={{ border: '1px solid', width: '40%', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
                 <h2>To-do List</h2>
 
@@ -56,8 +58,6 @@ export default function MainContainer() {
                     <button style={{ padding: '0.5rem' }}>Add</button>
 
                 </form>
-
-                {/* {list} */}
             </div>
         </div>
     );
